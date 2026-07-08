@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 860" width="1400" height="860">
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #24313A; }
+      .title { font-size: 34px; font-weight: 750; }
+      .subtitle { font-size: 18px; fill: #667985; }
+      .card-title { font-size: 21px; font-weight: 720; }
+      .card-text { font-size: 15px; fill: #5E717B; }
+      .small { font-size: 14px; fill: #647984; }
+      .pill { font-size: 16px; font-weight: 700; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#78909C"/>
+    </marker>
+    <filter id="shadow" x="-12%" y="-18%" width="124%" height="136%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#90A4AE" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="860" fill="#FAFBFC"/>
+
+  <text x="700" y="58" text-anchor="middle" class="title">mac-disk-cleaner 工作流</text>
+  <text x="700" y="90" text-anchor="middle" class="subtitle">先量再动：先判断是磁盘满还是内存/swap 满，再按风险分层处理。</text>
+
+  <g filter="url(#shadow)">
+    <rect x="100" y="128" width="250" height="104" rx="9" fill="#FFFFFF" stroke="#DDE5EB"/>
+    <rect x="100" y="128" width="250" height="5" rx="3" fill="#5B8DEF"/>
+    <text x="225" y="166" text-anchor="middle" class="card-title">用户触发</text>
+    <text x="225" y="197" text-anchor="middle" class="card-text">“内存炸了 / 磁盘满了”</text>
+
+    <rect x="420" y="128" width="250" height="104" rx="9" fill="#FFFFFF" stroke="#DDE5EB"/>
+    <rect x="420" y="128" width="250" height="5" rx="3" fill="#9B7FD4"/>
+    <text x="545" y="166" text-anchor="middle" class="card-title">只读诊断</text>
+    <text x="545" y="197" text-anchor="middle" class="card-text">df + swap + du 排黑洞</text>
+
+    <rect x="740" y="128" width="250" height="104" rx="9" fill="#FFFFFF" stroke="#DDE5EB"/>
+    <rect x="740" y="128" width="250" height="5" rx="3" fill="#4CAF82"/>
+    <text x="865" y="166" text-anchor="middle" class="card-title">分清问题类型</text>
+    <text x="865" y="197" text-anchor="middle" class="card-text">磁盘满 vs 内存/swap 满</text>
+
+    <rect x="1060" y="128" width="250" height="104" rx="9" fill="#FFFFFF" stroke="#DDE5EB"/>
+    <rect x="1060" y="128" width="250" height="5" rx="3" fill="#E8923A"/>
+    <text x="1185" y="166" text-anchor="middle" class="card-title">输出判断</text>
+    <text x="1185" y="197" text-anchor="middle" class="card-text">能自动清 / 需确认 / 需重启</text>
+  </g>
+
+  <line x1="350" y1="180" x2="420" y2="180" stroke="#78909C" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="670" y1="180" x2="740" y2="180" stroke="#78909C" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="990" y1="180" x2="1060" y2="180" stroke="#78909C" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <line x1="700" y1="250" x2="700" y2="302" stroke="#78909C" stroke-width="2.5"/>
+  <line x1="360" y1="302" x2="1040" y2="302" stroke="#78909C" stroke-width="2.5"/>
+  <line x1="360" y1="302" x2="360" y2="334" stroke="#78909C" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="1040" y1="302" x2="1040" y2="334" stroke="#78909C" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="120" y="342" width="480" height="118" rx="10" fill="#FFFFFF" stroke="#DDE5EB"/>
+    <rect x="120" y="342" width="480" height="5" rx="3" fill="#4CAF82"/>
+    <text x="360" y="382" text-anchor="middle" class="card-title">磁盘满：清缓存有效</text>
+    <text x="360" y="414" text-anchor="middle" class="card-text">继续按 Tier0 → Tier3 分层处置</text>
+    <text x="360" y="440" text-anchor="middle" class="small">目标：安全腾空间，不误删真实数据</text>
+
+    <rect x="800" y="342" width="480" height="118" rx="10" fill="#FFFFFF" stroke="#DDE5EB"/>
+    <rect x="800" y="342" width="480" height="5" rx="3" fill="#E05D5D"/>
+    <text x="1040" y="382" text-anchor="middle" class="card-title">内存/swap 满：清缓存没用</text>
+    <text x="1040" y="414" text-anchor="middle" class="card-text">关重 App / 重启，释放 swap</text>
+    <text x="1040" y="440" text-anchor="middle" class="small">磁盘清理只能解决“没空间”，不能直接加 RAM</text>
+  </g>
+
+  <line x1="360" y1="460" x2="360" y2="508" stroke="#78909C" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="90" y="520" width="1220" height="190" rx="12" fill="#FFFFFF" stroke="#D6E0E7"/>
+    <rect x="90" y="520" width="1220" height="44" rx="12" fill="#EEF5FF"/>
+    <text x="700" y="549" text-anchor="middle" class="pill">磁盘清理的四层风险模型</text>
+
+    <rect x="130" y="590" width="270" height="88" rx="8" fill="#F7F9FC" stroke="#DDE5EB"/>
+    <rect x="130" y="590" width="270" height="4" rx="2" fill="#5B8DEF"/>
+    <text x="265" y="622" text-anchor="middle" class="card-title">Tier 0 诊断</text>
+    <text x="265" y="651" text-anchor="middle" class="card-text">只读量化，不删</text>
+
+    <rect x="430" y="590" width="270" height="88" rx="8" fill="#F7F9FC" stroke="#DDE5EB"/>
+    <rect x="430" y="590" width="270" height="4" rx="2" fill="#4CAF82"/>
+    <text x="565" y="622" text-anchor="middle" class="card-title">Tier 1 自动清</text>
+    <text x="565" y="651" text-anchor="middle" class="card-text">纯可再生缓存</text>
+
+    <rect x="730" y="590" width="270" height="88" rx="8" fill="#F7F9FC" stroke="#DDE5EB"/>
+    <rect x="730" y="590" width="270" height="4" rx="2" fill="#E8923A"/>
+    <text x="865" y="622" text-anchor="middle" class="card-title">Tier 2 确认后删</text>
+    <text x="865" y="651" text-anchor="middle" class="card-text">zip / dmg / 数据集</text>
+
+    <rect x="1030" y="590" width="240" height="88" rx="8" fill="#F7F9FC" stroke="#DDE5EB"/>
+    <rect x="1030" y="590" width="240" height="4" rx="2" fill="#E05D5D"/>
+    <text x="1150" y="622" text-anchor="middle" class="card-title">Tier 3 不自动删</text>
+    <text x="1150" y="651" text-anchor="middle" class="card-text">聊天媒体 / 桌面 / 项目</text>
+  </g>
+
+  <line x1="400" y1="634" x2="430" y2="634" stroke="#78909C" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <line x1="700" y1="634" x2="730" y2="634" stroke="#78909C" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <line x1="1000" y1="634" x2="1030" y2="634" stroke="#78909C" stroke-width="2.2" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="140" y="752" width="1120" height="48" rx="24" fill="#EEF3F6" stroke="#D6E0E7"/>
+    <text x="700" y="783" text-anchor="middle" class="pill">安全边界：--clean 不清废纸篓，不碰真实数据；废纸篓需 --empty-trash 显式执行。</text>
+  </g>
+
+  <text x="700" y="832" text-anchor="middle" class="small">© xuwei_tools / mac-disk-cleaner</text>
+</svg>

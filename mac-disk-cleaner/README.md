@@ -8,6 +8,8 @@
 
 Mac 用久了反复"磁盘满",手动找又慢又怕误删。这个工具把多次真实清理沉淀成**可复用的分层流程 + 一键脚本**:该自动删的自动删(缓存零损失),该确认的确认,真实数据只建议搬走绝不乱删。还能帮你**分清"磁盘满"和"内存满"**——两者解法完全不同。
 
+![mac-disk-cleaner 工作流](assets/cleaning-flow.png)
+
 ## 快速用 · Quick start
 
 ```bash
@@ -19,6 +21,9 @@ bash scripts/clean.sh --clean
 
 # 更狠:额外清 HuggingFace 模型 + 项目 node_modules/.venv(可重建,但要重下/重装)
 bash scripts/clean.sh --deep
+
+# 明确清空废纸篓(真实删除,不会被 --clean 自动触发)
+bash scripts/clean.sh --empty-trash
 ```
 
 ## 核心方法 · The method
@@ -36,13 +41,24 @@ bash scripts/clean.sh --deep
 | 2 可重下/安装包 | `.dmg` 镜像、公开数据集、下载的 zip、重复副本 | 确认后删 |
 | 3 真实数据 | 聊天媒体、桌面文件、代码项目 | 永不自动删,只建议搬移 |
 
+## AI 应该怎么用 · Agent workflow
+
+当用户说"内存炸了 / 磁盘满了 / Mac 变卡"时,AI 不要直接删东西,按这个顺序走:
+
+1. 先运行 `bash scripts/clean.sh` 做只读诊断。
+2. 如果 `df` 可用空间很少,优先建议 `--clean` 清 Tier1。
+3. 如果 swap 很高但磁盘并不危险,告诉用户这是内存压力,应该关重 App 或重启。
+4. 如果要删下载、数据集、Docker、微信 `msg`、桌面文件,必须先列清单让用户确认。
+5. 如果要清废纸篓,必须让用户明确选择 `--empty-trash`。
+
 ## 硬规则(踩坑总结) · Hard rules
 1. 删前**先看细节**(路径/大小),不信黑盒。
 2. **跳过被依赖的缓存**(如 `ms-playwright` 被 Playwright/Firecrawl 依赖)——脚本用 `SKIP` 变量维护白名单。
 3. 删记忆/对话类数据前**先备份**。
 4. `~/Library/Containers` 受 TCC 保护,程序删不动 → 访达手动拖 或 给"完全磁盘访问"。
 5. 删 root 文件用 `osascript -e 'do shell script "…" with administrator privileges'`(弹图形授权,免 sudo 无 TTY 问题)。
-6. **缓存必然长回来**,反复满的治本解 = 搬走真实数据。
+6. `--clean` 不清废纸篓。废纸篓是真删除边界,必须显式运行 `--empty-trash`。
+7. **缓存必然长回来**,反复满的治本解 = 搬走真实数据。
 
 ## 怎么挂到 AI 里 · Use with AI
 把 `SKILL.md` 放进 `~/.claude/skills/mac-disk-cleaner/`(Claude Code),或直接把内容贴给任意 AI 当系统提示。之后说一句"磁盘满了帮我清"即可触发。

@@ -12,6 +12,7 @@ description: 安全清理 macOS 磁盘空间(内存/硬盘满了、开机变卡�
 bash ~/.claude/skills/mac-disk-cleaner/scripts/clean.sh          # 只读诊断(默认)
 bash ~/.claude/skills/mac-disk-cleaner/scripts/clean.sh --clean  # 清 Tier1 可再生缓存(零损失)
 bash ~/.claude/skills/mac-disk-cleaner/scripts/clean.sh --deep   # 额外清 HuggingFace 模型 + 项目 node_modules/.venv
+bash ~/.claude/skills/mac-disk-cleaner/scripts/clean.sh --empty-trash  # 明确清空废纸篓(真实删除)
 ```
 
 ## 第一步永远是分清:磁盘满 还是 内存满?
@@ -46,5 +47,12 @@ bash ~/.claude/skills/mac-disk-cleaner/scripts/clean.sh --deep   # 额外清 Hug
 7. **缓存必然长回来**,反复满的治本解=搬走 Tier3 真实数据。
 
 ## 需要人工/GUI 的收尾(脚本做不了)
-- 清空废纸篓才真正释放(脚本已含,但被锁定的需手动)。
+- 清空废纸篓才真正释放,但它属于真实删除边界;脚本不会随 `--clean` 自动清,必须用户明确选择 `--empty-trash`。
 - Docker 重置、卸载 App、TCC 保护目录、`.dmg` 里的应用安装 —— 走访达/系统设置。
+
+## Agent 执行协议
+1. 用户说"内存炸了/磁盘满了/Mac 变卡"时,先运行只读诊断,不要直接清理。
+2. 若诊断显示磁盘空间危险,再建议或执行 `--clean`。
+3. 若 swap 很高但磁盘空间尚可,明确告诉用户这是内存压力,清缓存不是治本,应关重 App 或重启。
+4. Tier2/Tier3 一律先列路径、大小、理由,等用户确认后再删或建议搬移。
+5. 废纸篓必须单独确认后才运行 `--empty-trash`。

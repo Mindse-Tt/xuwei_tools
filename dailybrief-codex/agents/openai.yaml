@@ -1,0 +1,4 @@
+interface:
+  display_name: "DailyBrief Codex"
+  short_description: "Run the local DailyBrief-Codex news report"
+  default_prompt: "Use $dailybrief-codex to run today's local daily brief and summarize it."

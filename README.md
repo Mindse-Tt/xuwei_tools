@@ -12,6 +12,7 @@
 |------|------|------|
 | [**diagram-generator**](diagram-generator/) | 一句话让 AI 画出排版好、配色统一的架构图 / 流程图 / 关系图 / 对比图(SVG → 高清 PNG) | One sentence → clean, well-aligned diagrams |
 | [**mac-disk-cleaner**](mac-disk-cleaner/) | macOS 磁盘满/变卡时,先量再动、只删可再生缓存、真实数据永不碰的分层清理 + 一键脚本;还能分清"磁盘满"vs"内存满" | Layered, safe macOS disk cleanup — diagnose first, delete only regenerable caches |
+| [**dailybrief-codex**](dailybrief-codex/) | 用 Codex 跑本地无 API Key 每日简报,自动生成 HTML / Markdown / JSON 并总结给你 | Codex-run local daily brief, no LLM API key by default |
 | _更多陆续加…_ | | _more coming…_ |
 
 ## 怎么用 · How

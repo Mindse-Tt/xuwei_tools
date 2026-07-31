@@ -48,6 +48,9 @@ The script prints JSON containing:
 - `date`
 - `html_path`
 - `markdown_path`
+- `archive_dir`
+- `archive_html_path`
+- `archive_markdown_path`
 - `title`
 - `overview`
 - grouped headline lists for tech, finance, politics
@@ -62,7 +65,7 @@ The script prints JSON containing:
    - 财经要点 3 条
    - 时政观察 2 条
    - 市场信号一句话 when present
-   - absolute paths for HTML and Markdown
+   - absolute paths for HTML, Markdown, and the desktop archive copy
 3. If the run fails, inspect:
    - `logs/daily-YYYY-MM-DD.log`
    - `logs/llm-calls.jsonl`
@@ -72,6 +75,7 @@ The script prints JSON containing:
 ## Known Notes
 
 - A single source failure, especially LinuxDo behind Cloudflare, is non-fatal if the report still writes.
+- Daily archive copies are stored in `~/Desktop/DailyBrief每日存档`, which points to `~/DailyBrief每日存档` and mirrors the user's `AIHOT每日存档` layout.
 - The report normally costs about 30k LLM tokens in the local CLI backend, plus a small Codex summarization overhead.
 - `codex-cli` is not the report backend right now; Codex orchestrates the run, while the report pipeline uses the verified local `claude-cli` backend.
 - The user's DailyBrief-Codex fork is:

@@ -75,6 +75,7 @@ def read_report(date_dir: Path) -> dict:
     json_path = date_dir / f"{date}.json"
     md_path = date_dir / f"{date}.md"
     html_path = date_dir / f"{date}.html"
+    archive_dir = Path.home() / "DailyBrief每日存档"
     if not json_path.exists():
         raise FileNotFoundError(f"Missing {json_path}")
     report = json.loads(json_path.read_text(encoding="utf-8"))
@@ -83,6 +84,9 @@ def read_report(date_dir: Path) -> dict:
         "date": date,
         "html_path": str(html_path),
         "markdown_path": str(md_path) if md_path.exists() else None,
+        "archive_dir": str(archive_dir),
+        "archive_html_path": str(archive_dir / f"{date}.html") if (archive_dir / f"{date}.html").exists() else None,
+        "archive_markdown_path": str(archive_dir / f"{date}.md") if (archive_dir / f"{date}.md").exists() else None,
         "title": report.get("hero_headline") or report.get("title") or "",
         "overview": report.get("daily_overview") or extract_section(markdown, "今日总览"),
         "tech": brief_titles(report.get("tech_briefs")),

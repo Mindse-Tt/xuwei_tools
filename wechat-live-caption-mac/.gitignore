@@ -1,0 +1,7 @@
+.venv/
+models/
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+微信实时字幕.app/

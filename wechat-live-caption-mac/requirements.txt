@@ -1,0 +1,7 @@
+numpy>=1.26
+sounddevice>=0.4.6
+sherpa-onnx>=1.10
+pyobjc-core>=10
+pyobjc-framework-Cocoa>=10
+pyobjc-framework-CoreAudio>=10
+pyobjc-framework-Quartz>=10

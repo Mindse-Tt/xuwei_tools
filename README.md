@@ -13,6 +13,7 @@
 | [**diagram-generator**](diagram-generator/) | 一句话让 AI 画出排版好、配色统一的架构图 / 流程图 / 关系图 / 对比图(SVG → 高清 PNG) | One sentence → clean, well-aligned diagrams |
 | [**mac-disk-cleaner**](mac-disk-cleaner/) | macOS 磁盘满/变卡时,先量再动、只删可再生缓存、真实数据永不碰的分层清理 + 一键脚本;还能分清"磁盘满"vs"内存满" | Layered, safe macOS disk cleanup — diagnose first, delete only regenerable caches |
 | [**dailybrief-codex**](dailybrief-codex/) | 用 Codex 跑本地无 API Key 每日简报,自动生成 HTML / Markdown / JSON 并总结给你 | Codex-run local daily brief, no LLM API key by default |
+| [**wechat-live-caption-mac**](wechat-live-caption-mac/) | 给 macOS 微信语音/视频通话加实时中文字幕,用 Core Audio Process Tap 只抓微信一个 App 的声音;能分「对方/我」两个说话人,自带回声抑制,通话自动开关 | Real-time Chinese captions for WeChat calls on macOS, per-app audio capture |
 | _更多陆续加…_ | | _more coming…_ |
 
 ## 怎么用 · How
